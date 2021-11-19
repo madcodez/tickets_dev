@@ -1,9 +1,13 @@
 import Link from "next/link";
 
 const Header = ({ currentUser }) => {
+  const email = currentUser && currentUser.email;
   const links = [
     !currentUser && { label: "Sign Up", href: "/auth/signup" },
     !currentUser && { label: "Sign In", href: "/auth/signin" },
+    currentUser && { label: `${email}`, href: "" },
+    currentUser && { label: "My Orders", href: "/orders" },
+    currentUser && { label: "Sell Tickets", href: "/tickets/new" },
     currentUser && { label: "Sign Out", href: "/auth/signout" },
   ]
     .filter((linkConfig) => linkConfig)
