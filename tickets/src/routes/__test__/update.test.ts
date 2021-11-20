@@ -29,7 +29,7 @@ it("return 401 if the userid is doesnot own the tickets", async () => {
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
     .set("Cookie", global.signin())
-    .send({ title: "qweqe", price: 100 })
+    .send({ title: "qweqe", price: 10 })
     .expect(401);
 });
 
