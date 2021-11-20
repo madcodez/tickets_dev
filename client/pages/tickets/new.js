@@ -18,7 +18,7 @@ const NewTicket = ({ client }) => {
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-  const uri = "/api/tickets/new";
+  const uri = "/api/tickets";
   const method = "post";
   const body = {
     title,

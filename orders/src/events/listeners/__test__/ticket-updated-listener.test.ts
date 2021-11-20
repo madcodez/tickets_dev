@@ -1,19 +1,19 @@
 import { Ticket } from "../../../models/ticket";
-import { TicketCreatedListener } from "../ticket-created-listener";
+import { TicketUpdatedListener } from "../ticket-updated-listener";
 import { natsWrapper } from "../../../nats-wrapper";
-import { TicketCreatedEvent } from "@madtickets/common";
+import { TicketUpdatedEvent } from "@madtickets/common";
 import { Message } from "node-nats-streaming";
 import mongoose from "mongoose";
 
 const setup = async () => {
-  const listener = new TicketCreatedListener(natsWrapper.client);
+  const listener = new TicketUpdatedListener(natsWrapper.client);
   const ticket = Ticket.build({
     id: new mongoose.Types.ObjectId().toHexString(),
     title: "concert",
     price: 20,
   });
   await ticket.save();
-  const data: TicketCreatedEvent["data"] = {
+  const data: TicketUpdatedEvent["data"] = {
     id: ticket.id,
     title: "ticket",
     price: 35,

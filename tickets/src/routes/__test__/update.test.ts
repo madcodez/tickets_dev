@@ -14,6 +14,7 @@ it("return 404 if he id not exists for put requests", async () => {
 
 it("return 401 if the user is not authenticated", async () => {
   const id = new mongoose.Types.ObjectId().toHexString();
+
   const response = await request(app)
     .put(`/api/tickets/${id}`)
     .send({ title: "qweqe", price: 100 });
@@ -24,6 +25,7 @@ it("return 401 if the userid is doesnot own the tickets", async () => {
     .post("/api/tickets")
     .set("Cookie", global.signin())
     .send({ title: "qweqe", price: 100 });
+  console.log(response.body);
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
     .set("Cookie", global.signin())
